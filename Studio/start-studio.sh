@@ -13,7 +13,6 @@ function shutdown {
 
 echo
 echo "Starting Semaphore Studio"
-systemctl start semaphore
 echo
 
 trap shutdown SIGHUP SIGINT SIGTERM
