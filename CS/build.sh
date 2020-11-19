@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t cs5 .
+docker build -t cs505 .
