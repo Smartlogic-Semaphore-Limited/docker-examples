@@ -1,2 +1,2 @@
 # docker-examples
-Repositories containing examples building docker images and containers for Semaphore
+Repository with examples of building docker images and containers for Semaphore 5.
