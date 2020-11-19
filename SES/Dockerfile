@@ -17,6 +17,10 @@ RUN yum -y --setopt=tsflags=nodocs update && \
 # Copy license file from local dir to image.
 COPY ./licence /opt/semaphore/licence
 
+# copy the patch into place to increase Java heap and patch solr.in.sh
+COPY solr.in.sh.patch /opt/semaphore/SES/solr/bin/solr.in.sh.patch
+RUN patch --directory /opt/semaphore/SES/solr/bin --ignore-whitespace < /opt/semaphore/SES/solr/bin/solr.in.sh.patch
+
 # Set the license directory environment variable.
 ENV SEMAPHORE_LICENCE_DIR /opt/semaphore
 
