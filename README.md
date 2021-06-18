@@ -28,10 +28,10 @@ The basic workflow for building and running docker containers is as follows:
 #### List all containers
   - `docker container ls -a`
 
-#### Start Container
+#### Stop Container
   - `docker stop *container id*`
 
-#### Stop Container
+#### Start Container
   - `docker start *container id*`
 
 #### List all images
