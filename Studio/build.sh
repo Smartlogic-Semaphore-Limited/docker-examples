@@ -1,4 +1,4 @@
 #!/bin/bash
 
-docker build -t studio505 .
+docker build  --squash -t studio522 .
 

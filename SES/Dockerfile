@@ -1,7 +1,7 @@
-FROM centos/systemd
+FROM oraclelinux:7
 
 LABEL maintainer="Smartlogic Semaphore Ltd"
-LABEL sem5-version="5.0.5"
+LABEL sem5-version="5.2.2"
 
 # Copy local RPMs and licence file to image
 RUN mkdir /local-rpms/
@@ -10,8 +10,8 @@ COPY *.rpm /local-rpms/
 # Get CentOS updates and install rpms, and clean up.
 RUN yum -y --setopt=tsflags=nodocs update && \
     yum install -y --setopt=tsflags=nodocs patch && \
-    yum install -y --setopt=tsflags=nodocs /local-rpms/java-11-amazon-corretto-devel-11.0.9.12-1.x86_64.rpm && \
-    yum install -y /local-rpms/Semaphore-SES-5.0.5-1.noarch.rpm && \
+    yum install -y --setopt=tsflags=nodocs /local-rpms/java-11-amazon-corretto-devel-11.0.12.7-1.x86_64.rpm && \
+    yum install -y /local-rpms/Semaphore-SES-5.2.2-1.noarch.rpm && \
     yum clean all
 
 # Copy license file from local dir to image.

@@ -1,4 +1,4 @@
 #!/bin/bash
 
-docker build -t ses505 .
+docker build --squash -t ses522 .
 

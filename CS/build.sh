@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t cs505 .
+docker build --squash -t cs522 .

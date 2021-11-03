@@ -1,6 +1,6 @@
 # Smartlogic Semaphore 5 Docker Examples
 
-This repository contains examples of building docker (or podman) images and containers for Smartlogic Semaphore 5. The required software components are not within the repository. Please read the steps below before attempting to build and run the containers.
+This repository contains examples of building docker (or podman) images and containers for Smartlogic Semaphore 5 using Oracle Enterprise Linux 7. The required software components are not within the repository. Please read the steps below before attempting to build and run the containers.
 
 ## Basic Workflow for Containers
 The basic workflow for building and running docker containers is as follows:
