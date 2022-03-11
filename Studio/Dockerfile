@@ -22,6 +22,10 @@ COPY start-studio.sh /opt/semaphore
 # make scripts executable
 RUN chmod 777 /opt/semaphore/start-studio.sh
 
+# TAR the directories and files under /var/opt/semaphore and /etc/opt/semaphore
+# so we can initialize bind mounts if necessary. Still works with docker volumes.
+RUN cd / && tar cvzf sem_var_opt_sem.tgz /var/opt/semaphore/ && tar cvzf sem_etc_opt_sem.tgz /etc/opt/semaphore/
+
 # set path environment variable
 ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/semaphore
 
@@ -32,4 +36,3 @@ VOLUME ["/var/opt/semaphore"]
 EXPOSE 5080
 
 CMD ["/opt/semaphore/start-studio.sh"]
-

@@ -17,6 +17,12 @@ echo
 
 trap shutdown SIGHUP SIGINT SIGTERM
 
+# Unpack the tarball under /var/opt/semaphore if studio folder does not exist (for bind mounts).
+[ ! -d "/var/opt/semaphore/studio/" ] && tar xvzf /sem_var_opt_sem.tgz
+# Unpack the tarball under /etc/opt/semaphore if studio folder does not exist (for bind mounts).
+[ ! -d "/etc/opt/semaphore/studio/" ] && tar xvzf /sem_etc_opt_sem.tgz
+
+# Start services
 cd /opt/semaphore/da
 JAVA_HOME=/usr/lib/jvm/java-11-amazon-corretto /opt/semaphore/da/bin/start.sh &
 
