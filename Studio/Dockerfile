@@ -30,8 +30,9 @@ RUN cd / && tar cvzf sem_var_opt_sem.tgz /var/opt/semaphore/ && tar cvzf sem_etc
 # set path environment variable
 ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/semaphore
 
-# external volume off union filesystem
+# external volumes off union filesystem
 VOLUME ["/var/opt/semaphore"]
+VOLUME ["/etc/opt/semaphore"]
 
 # Export Studio port 5080
 EXPOSE 5080
