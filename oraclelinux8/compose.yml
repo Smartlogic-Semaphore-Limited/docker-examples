@@ -1,0 +1,55 @@
+version: "3.9"  # optional since v1.27.0
+
+services:
+
+  ses:
+    image: marklogic/ses541
+    build: ./SES
+    container_name: ses541-1
+    ports:
+      - "8983:8983"
+    volumes:
+      - sem5_ses_volume:/var/opt/semaphore
+    networks:
+      - sem541_network_bridge
+
+  cs:
+    image: marklogic/cs541
+    build: ./CS
+    container_name: cs541-1
+    ports:
+      - "5058:5058"
+      - "5059:5059"
+    volumes:
+      - sem5_cs_volume:/var/opt/semaphore
+    networks:
+      - sem541_network_bridge
+
+  studio:
+    image: marklogic/studio541
+    build: ./Studio
+    container_name: studio541-1
+    ports:
+      - "5080:5080"
+    volumes:
+      - sem5_studio_etc_volume:/etc/opt/semaphore
+      - sem5_studio_var_volume:/var/opt/semaphore
+    networks:
+      - sem541_network_bridge
+
+volumes:
+  sem5_ses_volume:
+    name: sem5_ses_volume
+
+  sem5_cs_volume:
+    name: sem5_cs_volume
+
+  sem5_studio_etc_volume:
+    name: sem5_studio_etc_volume
+
+  sem5_studio_var_volume:
+    name: sem5_studio_var_volume
+
+networks:
+  sem541_network_bridge:
+    name: sem_541_network_bridge
