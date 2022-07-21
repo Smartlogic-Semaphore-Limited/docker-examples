@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build --squash -t cs522 .
+docker build --squash -t marklogic/cs541 .

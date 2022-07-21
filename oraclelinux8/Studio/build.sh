@@ -1,4 +1,4 @@
 #!/bin/bash
 
-docker build  --squash -t studio540 .
+docker build  --squash -t marklogic/studio541 .
 

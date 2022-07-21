@@ -1,4 +1,4 @@
 #!/bin/bash
 
-docker build --squash -t ses522 .
+docker build --squash -t marklogic/ses541 .
 
