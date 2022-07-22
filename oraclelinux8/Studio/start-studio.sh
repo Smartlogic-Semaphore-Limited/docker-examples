@@ -7,7 +7,9 @@ function shutdown {
   cd /opt/semaphore/studio
   export CATALINA_BASE=/opt/semaphore/studio
   /opt/semaphore/tomcat/bin/shutdown.sh
-  sleep 100
+  sleep 100 
+  pkill java
+  sleep 10 
   exit
 }
 
@@ -26,9 +28,15 @@ trap shutdown SIGHUP SIGINT SIGTERM
 cd /opt/semaphore/da
 JAVA_HOME=/usr/lib/jvm/java-11-amazon-corretto /opt/semaphore/da/bin/start.sh &
 
-export CATALINA_HOME=/opt/semaphore/tomcat
+cd /opt/semaphore/rm
+JAVA_HOME=/usr/lib/jvm/java-11-amazon-corretto /opt/semaphore/rm/bin/start.sh &
 
+cd /opt/semaphore/sm
+JAVA_HOME=/usr/lib/jvm/java-11-amazon-corretto /opt/semaphore/sm/bin/start.sh &
+
+export CATALINA_HOME=/opt/semaphore/tomcat
 export JAVA_HOME=/usr/lib/jvm/java-11-amazon-corretto
+
 cd /opt/semaphore/kmm
 SEMAPHORE_WORKBENCH_HOME=/var/opt/semaphore/kmm/data JAVA_HOME=/usr/lib/jvm/java-11-amazon-corretto CATALINA_BASE=/opt/semaphore/kmm /opt/semaphore/tomcat/bin/startup.sh
 
