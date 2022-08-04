@@ -11,7 +11,7 @@ COPY *.rpm /local-rpms/
 RUN yum -y --setopt=tsflags=nodocs update && \
     yum install -y --setopt=tsflags=nodocs patch && \
     yum install -y util-linux-user && \
-    yum install -y --setopt=tsflags=nodocs /local-rpms/java-11-amazon-corretto-devel-11.*.x86_64.rpm && \
+    yum install -y --setopt=tsflags=nodocs /local-rpms/java-11-amazon-corretto-devel-11.*.*.rpm && \
     yum install -y /local-rpms/Semaphore-Studio-5.4.1-1.noarch.rpm && \
     yum install -y tar && \
     yum clean all

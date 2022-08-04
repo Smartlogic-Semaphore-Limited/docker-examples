@@ -9,7 +9,7 @@ COPY *.rpm /local-rpms/
 
 # Get CentOS updates and install rpms, and clean up.
 RUN yum -y --setopt=tsflags=nodocs update && \
-    yum install -y --setopt=tsflags=nodocs /local-rpms/java-11-amazon-corretto-devel-11.0.*-1.x86_64.rpm && \
+    yum install -y --setopt=tsflags=nodocs /local-rpms/java-11-amazon-corretto-devel-11.0.*.*.rpm && \
     yum install -y /local-rpms/Semaphore-Studio-5.4.1-1.noarch.rpm && \
     yum install -y tar && \
     yum clean all

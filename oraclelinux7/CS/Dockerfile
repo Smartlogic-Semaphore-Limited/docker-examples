@@ -9,7 +9,7 @@ COPY *.rpm /local-rpms/
 
 # Get CentOS updates and install rpms, and clean up.
 RUN yum -y --setopt=tsflags=nodocs update && \
-    yum install -y --setopt=tsflags=nodocs /local-rpms/java-11-amazon-corretto-devel-11.0.*.x86_64.rpm && \
+    yum install -y --setopt=tsflags=nodocs /local-rpms/java-11-amazon-corretto-devel-11.0.*.*.rpm && \
     yum install -y /local-rpms/Semaphore-LanguagePack-Linux-Base-5.4.0.rpm && \
     yum install -y /local-rpms/Semaphore-LanguagePack-Linux-English-5.4.0.rpm && \
     yum install -y /local-rpms/Semaphore-ClassificationServer-5.4.1-1.x86_64.rpm && \

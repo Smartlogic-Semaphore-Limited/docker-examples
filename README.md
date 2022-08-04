@@ -5,13 +5,14 @@ This repository contains examples of building docker (or podman) images and cont
 ## Basic Workflow for Containers
 The basic workflow for building and running docker containers is as follows:
 
-  1. Gather required software modules (RPMs) and related files (licenses).
+  1. Gather required software modules (JDK, Marklogic RPMs) and related files (licenses).
+     Make sure to use the correct JDK 11 to match your Docker host architecture.
   2. Build the docker image (Dockerfile)
   3. Build the container container and run.
   4. Stop container and start container in the standard way (docker stop, docker start).
 
 ### Build Docker Image
-  - Gather Java and Smartlogic RPMs and license files needed to build the images. Look in each Dockerfile for requirements. These are examples intended as informational but should be modified.
+  - Gather Java and Smartlogic RPMs and license files needed to build the images. Look in each Dockerfile for requirements. These are examples intended as informational but should be modified. Make sure to use the correct architecture JDK for your images that matches your host architecture (e.g x86_64, aarch64, etc). 
   - Construct the image by running build.sh script.
 
 ### Build Docker Container and Run
