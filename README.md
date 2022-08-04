@@ -13,6 +13,7 @@ The basic workflow for building and running docker containers is as follows:
 
 ### Build Docker Image
   - Gather Java and Smartlogic RPMs and license files needed to build the images. Look in each Dockerfile for requirements. These are examples intended as informational but should be modified. Make sure to use the correct architecture JDK for your images that matches your host architecture (e.g x86_64, aarch64, etc). 
+    (Note that at the current time, Classification Server only has an RPM for x86_64 architecture.)
   - Construct the image by running build.sh script.
 
 ### Build Docker Container and Run
