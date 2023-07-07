@@ -1,0 +1,70 @@
+version: "3.9"  # optional since v1.27.0
+
+services:
+
+  rs:
+    image: progress/rs563
+    build: ./RS
+    container_name: rs563-1
+    ports:
+      - "5090:5090"
+    volumes:
+      - sem5_rs_volume:/var/opt/semaphore
+    networks:
+      - sem563_network_bridge
+
+  ses:
+    image: progress/ses563
+    build: ./SES
+    container_name: ses563-1
+    ports:
+      - "8983:8983"
+    volumes:
+      - sem5_ses_volume:/var/opt/semaphore
+    networks:
+      - sem563_network_bridge
+
+  cs:
+    image: progress/cs563
+    build: ./CS
+    container_name: cs563-1
+    ports:
+      - "5058:5058"
+      - "5059:5059"
+    volumes:
+      - sem5_cs_volume:/var/opt/semaphore
+    networks:
+      - sem563_network_bridge
+
+  studio:
+    image: progress/studio563
+    build: ./Studio
+    container_name: studio563-1
+    ports:
+      - "5080:5080"
+    volumes:
+      - sem5_studio_etc_volume:/etc/opt/semaphore
+      - sem5_studio_var_volume:/var/opt/semaphore
+    networks:
+      - sem563_network_bridge
+
+volumes:
+  sem5_rs_volume:
+    name: sem5_rs_volume
+
+  sem5_ses_volume:
+    name: sem5_ses_volume
+
+  sem5_cs_volume:
+    name: sem5_cs_volume
+
+  sem5_studio_etc_volume:
+    name: sem5_studio_etc_volume
+
+  sem5_studio_var_volume:
+    name: sem5_studio_var_volume
+
+networks:
+  sem563_network_bridge:
+    name: sem_563_network_bridge
+
