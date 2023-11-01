@@ -1,0 +1,87 @@
+version: "3.9"  # optional since v1.27.0
+
+services:
+
+  rs:
+    image: progress/rs564
+    build: ./RS
+    container_name: rs564-1
+    ports:
+      - "5090:5090"
+    volumes:
+      - sem5_rs_volume:/var/opt/semaphore
+    networks:
+      - sem564_network_bridge
+
+  ses:
+    image: progress/ses564
+    build: ./SES
+    container_name: ses564-1
+    ports:
+      - "8983:8983"
+    volumes:
+      - sem5_ses_volume:/var/opt/semaphore
+    networks:
+      - sem564_network_bridge
+
+  cs:
+    image: progress/cs564
+    build: ./CS
+    container_name: cs564-1
+    ports:
+      - "5058:5058"
+      - "5059:5059"
+    volumes:
+      - sem5_cs_volume:/var/opt/semaphore
+    networks:
+      - sem564_network_bridge
+
+  studio:
+    image: progress/studio564
+    build: ./Studio
+    container_name: studio564-1
+    ports:
+      - "5080:5080"
+    volumes:
+      - sem5_studio_etc_volume:/etc/opt/semaphore
+      - sem5_studio_var_volume:/var/opt/semaphore
+    networks:
+      - sem564_network_bridge
+
+  ml:
+    image: progress/studio-ml-backend
+    build: ./Marklogic
+    container_name: ml11-1
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+      - "8002:8002"
+    volumes:
+      - ml11_var_volume:/var/opt/MarkLogic
+    networks:
+      - sem564_network_bridge
+
+volumes:
+  sem5_rs_volume:
+    name: sem5_rs_volume
+
+  sem5_ses_volume:
+    name: sem5_ses_volume
+
+  sem5_cs_volume:
+    name: sem5_cs_volume
+
+  sem5_studio_etc_volume:
+    name: sem5_studio_etc_volume
+
+  sem5_studio_var_volume:
+    name: sem5_studio_var_volume
+
+  ml11_var_volume:
+    name: ml11_var_volume
+
+
+networks:
+  sem564_network_bridge:
+    name: sem_564_network_bridge
+
