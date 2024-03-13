@@ -1,0 +1,115 @@
+version: "3.9"  # optional since v1.27.0
+
+services:
+
+  rs:
+    image: progress/rs580
+    build: ./RS
+    container_name: rs580-1
+    ports:
+      - "5090:5090"
+    volumes:
+      - sem5_rs_volume:/var/opt/semaphore
+    networks:
+      - sem580_network_bridge
+
+  ses:
+    image: progress/ses580
+    build: ./SES
+    container_name: ses580-1
+    ports:
+      - "8983:8983"
+    volumes:
+      - sem5_ses_volume:/var/opt/semaphore
+    networks:
+      - sem580_network_bridge
+
+  cs:
+    image: progress/cs580
+    build: ./CS
+    container_name: cs580-1
+    platform: "linux/amd64"
+    ports:
+      - "5058:5058"
+      - "5059:5059"
+    volumes:
+      - sem5_cs_volume:/var/opt/semaphore
+    networks:
+      - sem580_network_bridge
+
+  ml:
+    environment:
+      - MARKLOGIC_ADMIN_USERNAME=${MARKLOGIC_ADMIN_USERNAME}
+      - MARKLOGIC_ADMIN_PASSWORD=${MARKLOGIC_ADMIN_PASSWORD}
+      - MARKLOGIC_WALLET_PASSWORD=${MARKLOGIC_WALLET_PASSWORD}
+    image: progress/studio-ml-backend
+    build: ./Marklogic
+    container_name: ml11-1
+    platform: "linux/amd64"
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+      - "8002:8002"
+    volumes:
+      - ml11_var_volume:/var/opt/MarkLogic
+    networks:
+      - sem580_network_bridge
+
+  studio:
+    image: progress/studio580
+    build: ./Studio
+    container_name: studio580-1
+    environment:
+      - SEMAPHORE_ADMIN_USERNAME=${SEMAPHORE_ADMIN_USERNAME}
+      - SEMAPHORE_ADMIN_PASSWORD=${SEMAPHORE_ADMIN_PASSWORD}
+      - MARKLOGIC_ADMIN_USERNAME=${MARKLOGIC_ADMIN_USERNAME}
+      - MARKLOGIC_ADMIN_PASSWORD=${MARKLOGIC_ADMIN_PASSWORD}
+    ports:
+      - "5080:5080"
+    volumes:
+      - sem5_studio_etc_volume:/etc/opt/semaphore
+      - sem5_studio_var_volume:/var/opt/semaphore
+    networks:
+      - sem580_network_bridge
+
+  cons:
+    environment:
+      - MARKLOGIC_ADMIN_USERNAME=${MARKLOGIC_ADMIN_USERNAME}
+      - MARKLOGIC_ADMIN_PASSWORD=${MARKLOGIC_ADMIN_PASSWORD}
+    image: progress/cons580
+    build: ./Cons
+    container_name: cons580-1
+    ports:
+      - "5092:5092"
+    volumes:
+      - sem5_cons_volume:/var/opt/semaphore
+    networks:
+      - sem580_network_bridge
+
+volumes:
+  sem5_rs_volume:
+    name: sem5_rs_volume
+
+  sem5_ses_volume:
+    name: sem5_ses_volume
+
+  sem5_cons_volume:
+    name: sem5_cons_volume
+
+  sem5_cs_volume:
+    name: sem5_cs_volume
+
+  sem5_studio_etc_volume:
+    name: sem5_studio_etc_volume
+
+  sem5_studio_var_volume:
+    name: sem5_studio_var_volume
+
+  ml11_var_volume:
+    name: ml11_var_volume
+
+
+networks:
+  sem580_network_bridge:
+    name: sem_580_network_bridge
+
