@@ -8,20 +8,24 @@ for Marklogic and Semaphore.
 
 For exmaple:
 
-cd oraclelinux9
-cat > .env
-MARKLOGIC_ADMIN_USERNAME=MyAdminUser
-MARKLOGIC_ADMIN_PASSWORD=MyPassword
-MARKLOGIC_WALLET_PASSWORD=MyWalletPassword
-SEMAPHORE_ADMIN_USERNAME=MyAdminUserForSemaphore
-SEMAPHORE_ADMIN_PASSWORD=MyOtherPassword
-(ctrl-d)
-docker compose up -d
-
+```
+  cd oraclelinux9
+  cat > .env
+  MARKLOGIC_ADMIN_USERNAME=MyAdminUser
+  MARKLOGIC_ADMIN_PASSWORD=MyPassword
+  MARKLOGIC_WALLET_PASSWORD=MyWalletPassword
+  SEMAPHORE_ADMIN_USERNAME=MyAdminUserForSemaphore
+  SEMAPHORE_ADMIN_PASSWORD=MyOtherPassword
+  (ctrl-d)
+  docker compose up -d
+```
 To stop:
 
-docker compose stop
+```
+  docker compose stop
+```
 
 To tear down:
-
-docker compose down -v --rmi local
+```
+  docker compose down -v --rmi local
+```
